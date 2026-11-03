@@ -84,7 +84,7 @@ Then open http://localhost:8080.
 4. Click **Deploy**.
 
 ### After the first deploy
-- **Set your real URL:** replace every `https://myportfolio-0188.netlify.app` in `index.html` (canonical, Open Graph, Twitter and JSON-LD) with your live URL, then redeploy.
+- **Set your real URL:** replace every `https://ahmershahzad.netlify.app` in `index.html` (canonical, Open Graph, Twitter and JSON-LD) with your live URL, then redeploy.
 - **Contact form:** Netlify detects the form automatically (`data-netlify="true"`). Submissions appear under **Forms** in the Netlify dashboard. To get them by email, go to **Site configuration → Forms → Form notifications → Add notification → Email notification**. If submissions don't show up, check that **Forms → Enable form detection** is turned on and redeploy.
 - Spam is filtered by a hidden honeypot field (`bot-field`) plus Netlify's built-in filter.
 
