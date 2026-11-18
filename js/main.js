@@ -1,20 +1,23 @@
 /*
- * main.js: all interactions for the portfolio. Vanilla JS, no dependencies.
+ * main.js: all interactions for the portfolio. Vanilla JS; GSAP and Three.js are
+ * self-hosted in js/vendor and loaded on demand (never when reduced motion is on).
  * Every feature checks that its elements exist, so this file also runs on 404.html.
  *
  *  1. Helpers + environment flags
  *  2. Footer year
  *  3. Theme toggle
- *  4. Hero name split + load reveal
+ *  4. Hero name split + load reveal, typing line
  *  5. Scroll progress + navbar state
  *  6. Active section highlight
- *  7. Scroll reveals
+ *  7. Scroll reveals + 3D device straighten (GSAP ScrollTrigger)
  *  8. Mobile menu
  *  9. Custom cursor + magnetic elements
  * 10. Project card tilt
  * 11. Terminal typing
  * 12. Certificate lightbox
  * 13. Contact form (Netlify Forms via fetch)
+ * 14. PrintFlow screenshot gallery
+ * 15. Hero 3D scene (Three.js, lazy)
  */
 (function () {
   'use strict';
@@ -25,6 +28,18 @@
   var root = document.documentElement;
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  // base URL for files next to this script (js/), used for on-demand loading
+  var scriptBase = document.currentScript ? document.currentScript.src : window.location.href;
+
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = new URL(src, scriptBase).href;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
 
   /* 2. Footer year ------------------------------------------------------- */
   $$('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
@@ -35,7 +50,7 @@
 
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
-    if (themeMeta) themeMeta.setAttribute('content', theme === 'light' ? '#f3efe6' : '#0b0b0f');
+    if (themeMeta) themeMeta.setAttribute('content', theme === 'light' ? '#f3f7fb' : '#050912');
     if (themeBtn) themeBtn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
   }
   applyTheme(root.getAttribute('data-theme') || 'dark');
@@ -49,23 +64,46 @@
   }
 
   /* 4. Hero name split ----------------------------------------------------
-     Wraps each letter in a span with an index (--i) used for the stagger delay. */
+     Wraps each word (so lines only break between words) and each letter in it,
+     with an index (--i) used for the stagger delay. */
   var charIndex = 0;
   $$('[data-split]').forEach(function (el) {
-    var text = el.textContent;
+    var words = el.textContent.trim().split(/\s+/);
     el.textContent = '';
-    for (var i = 0; i < text.length; i++) {
-      var span = document.createElement('span');
-      span.className = 'char';
-      span.textContent = text[i];
-      span.style.setProperty('--i', charIndex++);
-      el.appendChild(span);
-    }
+    words.forEach(function (word, w) {
+      if (w > 0) el.appendChild(document.createTextNode(' '));
+      var wordEl = document.createElement('span');
+      wordEl.className = 'word';
+      for (var i = 0; i < word.length; i++) {
+        var span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = word[i];
+        span.style.setProperty('--i', charIndex++);
+        wordEl.appendChild(span);
+      }
+      el.appendChild(wordEl);
+    });
   });
   // two frames so the initial (hidden) state is painted before animating in
   requestAnimationFrame(function () {
     requestAnimationFrame(function () { root.classList.add('is-loaded'); });
   });
+
+  // typing line under the name (the full text is already in the HTML for no-JS / reduced motion)
+  var typed = $('[data-type]');
+  if (typed && !reducedMotion) {
+    var fullText = typed.getAttribute('data-type');
+    var typedCaret = document.createElement('span');
+    typedCaret.className = 't-caret';
+    typed.textContent = '';
+    typed.appendChild(typedCaret);
+    var ti = 0;
+    setTimeout(function step() {
+      typed.textContent = fullText.slice(0, ++ti);
+      typed.appendChild(typedCaret);
+      if (ti < fullText.length) setTimeout(step, 28 + Math.random() * 40);
+    }, 900);
+  }
 
   /* 5. Scroll progress + navbar ----------------------------------------- */
   var bar = $('.progress__bar');
@@ -109,21 +147,65 @@
     if (hero) sectionObserver.observe(hero);
   }
 
-  /* 7. Scroll reveals ---------------------------------------------------- */
-  var revealEls = $$('[data-reveal]');
-  if (reducedMotion || !('IntersectionObserver' in window)) {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
-  } else {
-    var revealObserver = new IntersectionObserver(function (entries, obs) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
+  /* 7. Scroll reveals (GSAP ScrollTrigger) --------------------------------
+     Nothing is hidden by CSS, so if GSAP fails to load (or motion is reduced)
+     everything simply stays visible. */
+  // run once the page has loaded and the browser is idle (keeps startup light on phones)
+  var afterLoadIdle = function (fn) {
+    var idle = function () {
+      if ('requestIdleCallback' in window) window.requestIdleCallback(fn, { timeout: 2500 });
+      else setTimeout(fn, 600);
+    };
+    if (document.readyState === 'complete') idle();
+    else window.addEventListener('load', idle);
+  };
+
+  // Elements below the fold are revealed by GSAP; only the hero (not animated by GSAP)
+  // is on screen at load, so GSAP can wait until the page is idle.
+  if (!reducedMotion && ($('[data-reveal]') || $('[data-device]'))) afterLoadIdle(function () {
+    loadScript('vendor/gsap.min.js')
+      .then(function () { return loadScript('vendor/ScrollTrigger.min.js'); })
+      .then(function () {
+        var gsap = window.gsap;
+        gsap.registerPlugin(window.ScrollTrigger);
+
+        // single blocks: fade + rise
+        $$('[data-reveal]').forEach(function (el) {
+          gsap.from(el, {
+            autoAlpha: 0, y: 40, duration: 1, ease: 'power3.out',
+            clearProps: 'transform,opacity,visibility', // hand transforms back to CSS (tilt, hover)
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+          });
+        });
+
+        // grids (skills, certifications): staggered pop-in
+        var items = $$('[data-reveal-item]');
+        if (items.length) {
+          gsap.set(items, { autoAlpha: 0, y: 28, scale: 0.96 });
+          window.ScrollTrigger.batch(items, {
+            start: 'top 92%',
+            once: true,
+            onEnter: function (batch) {
+              gsap.to(batch, {
+                autoAlpha: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out', stagger: 0.06,
+                clearProps: 'transform,opacity,visibility'
+              });
+            }
+          });
         }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    revealEls.forEach(function (el) { revealObserver.observe(el); });
-  }
+
+        // PrintFlow browser mockup straightens as it scrolls into view
+        $$('[data-device]').forEach(function (device) {
+          gsap.fromTo(device,
+            { '--dev-rx': '12deg', '--dev-ry': '-16deg', '--dev-rz': '2deg' },
+            {
+              '--dev-rx': '0deg', '--dev-ry': '0deg', '--dev-rz': '0deg', ease: 'none',
+              scrollTrigger: { trigger: device, start: 'top 90%', end: 'center 50%', scrub: 0.6 }
+            });
+        });
+      })
+      .catch(function () { /* GSAP unavailable: content is already visible */ });
+  });
 
   /* 8. Mobile menu ------------------------------------------------------- */
   var menuBtn = $('.nav__toggle');
@@ -395,5 +477,108 @@
           submitBtn.removeAttribute('aria-busy');
         });
     });
+  }
+
+  /* 14. PrintFlow screenshot gallery --------------------------------------
+     Builds the tab buttons from the slides' data-label, then wires
+     tabs, prev/next, arrow keys and swipe. A missing image shows a placeholder. */
+  $$('[data-gallery]').forEach(function (gallery, g) {
+    var slides = $$('[data-slide]', gallery);
+    var tablist = $('[role="tablist"]', gallery);
+    if (!slides.length || !tablist) return;
+    var current = 0;
+
+    var tabs = slides.map(function (slide, i) {
+      var id = 'gallery' + g + '-slide' + i;
+      slide.id = id;
+      slide.setAttribute('role', 'tabpanel');
+      slide.setAttribute('aria-label', slide.getAttribute('data-label'));
+
+      var img = $('img', slide);
+      if (img) {
+        var markMissing = function () { slide.classList.add('is-missing'); };
+        img.addEventListener('error', markMissing);
+        if (img.complete && img.naturalWidth === 0 && img.getAttribute('loading') !== 'lazy') markMissing();
+      }
+
+      var tab = document.createElement('button');
+      tab.type = 'button';
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-controls', id);
+      tab.textContent = slide.getAttribute('data-label');
+      tab.addEventListener('click', function () { show(i); });
+      tablist.appendChild(tab);
+      return tab;
+    });
+
+    function show(i, focusTab) {
+      current = (i + slides.length) % slides.length;
+      slides.forEach(function (s, n) { s.classList.toggle('is-active', n === current); });
+      tabs.forEach(function (t, n) {
+        var on = n === current;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+      });
+      tabs[current].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      if (focusTab) tabs[current].focus();
+    }
+
+    var prev = $('[data-prev]', gallery);
+    var next = $('[data-next]', gallery);
+    if (prev) prev.addEventListener('click', function () { show(current - 1); });
+    if (next) next.addEventListener('click', function () { show(current + 1); });
+
+    tablist.addEventListener('keydown', function (e) {
+      var map = { ArrowRight: current + 1, ArrowLeft: current - 1, Home: 0, End: slides.length - 1 };
+      if (e.key in map) { e.preventDefault(); show(map[e.key], true); }
+    });
+
+    // swipe on touch screens
+    var screen = $('.device__screen', gallery);
+    var startX = null;
+    if (screen) {
+      screen.addEventListener('pointerdown', function (e) { startX = e.clientX; });
+      screen.addEventListener('pointerup', function (e) {
+        if (startX === null) return;
+        var dx = e.clientX - startX;
+        if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+        startX = null;
+      });
+    }
+
+    // initial state without scrolling the page
+    slides.forEach(function (s, n) { s.classList.toggle('is-active', n === 0); });
+    tabs.forEach(function (t, n) { t.setAttribute('aria-selected', String(n === 0)); t.tabIndex = n === 0 ? 0 : -1; });
+  });
+
+  /* 15. Hero 3D scene -----------------------------------------------------
+     Three.js is ~170 KB gzipped, so it loads only after the page has finished
+     loading and the browser is idle. Skipped entirely for reduced motion or no WebGL
+     (the CSS orb stays). Phones/tablets get a lighter version, mounted on the first
+     touch or scroll so it never competes with the initial page load on slow CPUs. */
+  var hero3d = $('#hero-3d');
+  var hasWebGL = function () {
+    try {
+      var c = document.createElement('canvas');
+      return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl')));
+    } catch (e) { return false; }
+  };
+  if (hero3d && !reducedMotion) {
+    var mobile3d = !finePointer || window.innerWidth < 768;
+    var mounted = false;
+    var mount3d = function () {
+      // the WebGL check creates a GL context, so it runs here, not at startup
+      if (mounted || !hasWebGL()) return;
+      mounted = true;
+      import(new URL('hero3d.js', scriptBase).href)
+        .then(function (mod) { mod.init(hero3d, { mobile: mobile3d }); })
+        .catch(function () { /* keep the CSS orb */ });
+    };
+    if (mobile3d) {
+      var onFirstInteraction = function () { afterLoadIdle(mount3d); };
+      ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(function (type) {
+        window.addEventListener(type, onFirstInteraction, { once: true, passive: true });
+      });
+    } else afterLoadIdle(mount3d);
   }
 })();

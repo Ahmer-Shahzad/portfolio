@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-tools",
+  "private": true,
+  "description": "Local helper scripts (not part of the deployed site).",
+  "type": "module",
+  "scripts": {
+    "capture": "node capture-printflow.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "1.48.2"
+  }
+}
