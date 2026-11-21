@@ -27,10 +27,10 @@
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
-  <!-- Fonts: Space Grotesk (headings), Inter (body), JetBrains Mono (accents) -->
+  <!-- Two typefaces only: Space Grotesk (display, labels) and Inter (text) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
 
   <link rel="stylesheet" href="css/style.css">
   <script src="js/theme.js"></script>
@@ -76,11 +76,11 @@
     <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></g></symbol>
     <symbol id="i-spark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M10 3c.6 3.8 2.2 5.4 6 6-3.8.6-5.4 2.2-6 6-.6-3.8-2.2-5.4-6-6 3.8-.6 5.4-2.2 6-6Z"/><path d="M18 14c.3 1.8 1.2 2.7 3 3-1.8.3-2.7 1.2-3 3-.3-1.8-1.2-2.7-3-3 1.8-.3 2.7-1.2 3-3Z"/></g></symbol>
 
-    <!-- skill icons (simple line drawings, not official logos) -->
+    <!-- skill icons (simple line drawings, not official logos); also drawn onto the 3D skill sphere -->
     <symbol id="s-react" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4"><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></g><circle cx="12" cy="12" r="1.8" fill="currentColor"/></symbol>
     <symbol id="s-next" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M9 16V8l7.5 10M15.5 8v5"/></g></symbol>
-    <symbol id="s-ts" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12.6" y="17" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="700" fill="currentColor">TS</text></symbol>
-    <symbol id="s-js" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12.6" y="17" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="700" fill="currentColor">JS</text></symbol>
+    <symbol id="s-ts" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12.6" y="17" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="currentColor">TS</text></symbol>
+    <symbol id="s-js" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12.6" y="17" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="currentColor">JS</text></symbol>
     <symbol id="s-node" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.5 20.5 7.3v9.4L12 21.5l-8.5-4.8V7.3Z"/><path d="M12 7.5v9M8.5 9.6 12 7.5l3.5 2.1" stroke-linecap="round"/></g></symbol>
     <symbol id="s-firebase" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M5 18.5 7.5 3.5l3.4 6.3L13 6l6 12.5-7 3.5Z"/></symbol>
     <symbol id="s-html" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></symbol>
@@ -93,14 +93,28 @@
     <symbol id="s-ai" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M10 3c.6 3.8 2.2 5.4 6 6-3.8.6-5.4 2.2-6 6-.6-3.8-2.2-5.4-6-6 3.8-.6 5.4-2.2 6-6Z"/><path d="M18 14c.3 1.8 1.2 2.7 3 3-1.8.3-2.7 1.2-3 3-.3-1.8-1.2-2.7-3-3 1.8-.3 2.7-1.2 3-3Z"/></g></symbol>
   </svg>
 
-  <!-- Scroll progress + custom cursor (decorative) -->
+  <!-- Intro: under 1.5 s, once per session, click or any key skips it. Shown only when theme.js
+       adds html.intro-on (never with reduced motion). It also hides itself in CSS if JS stalls. -->
+  <div class="intro" aria-hidden="true">
+    <span class="intro__mark">ahmer<span class="accent">.</span></span>
+    <span class="intro__bar"><span></span></span>
+  </div>
+
+  <!-- One persistent 3D scene behind the whole site (js/scene.js, lazy-loaded).
+       The gradient underneath is the fallback for reduced motion / no WebGL. -->
+  <div class="scene" aria-hidden="true">
+    <div class="scene__fallback"></div>
+    <div class="scene__canvas" id="scene"></div>
+    <div class="scene__label"></div>
+  </div>
+
   <div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
-  <div class="cursor" aria-hidden="true"><span class="cursor__ring"></span><span class="cursor__dot"></span></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__glow"></span><span class="cursor__ring"></span><span class="cursor__dot"></span></div>
 
   <!-- ============ NAVBAR ============ -->
   <header class="nav" id="top">
     <div class="nav__inner container">
-      <a class="nav__logo" href="#top" data-magnetic aria-label="Muhammad Ahmer Shahzad, back to top">
+      <a class="nav__logo" href="#home" data-magnetic aria-label="Muhammad Ahmer Shahzad, back to top">
         ahmer<span class="accent">.</span>
       </a>
 
@@ -109,10 +123,8 @@
           <li><a href="#about"><span class="nav__num">01</span>About</a></li>
           <li><a href="#skills"><span class="nav__num">02</span>Skills</a></li>
           <li><a href="#projects"><span class="nav__num">03</span>Work</a></li>
-          <li><a href="#experience"><span class="nav__num">04</span>Experience</a></li>
-          <li><a href="#education"><span class="nav__num">05</span>Education</a></li>
-          <li><a href="#honours"><span class="nav__num">06</span>Honours</a></li>
-          <li><a href="#contact"><span class="nav__num">07</span>Contact</a></li>
+          <li><a href="#education"><span class="nav__num">04</span>Education</a></li>
+          <li><a href="#contact"><span class="nav__num">05</span>Contact</a></li>
         </ul>
       </nav>
 
@@ -133,513 +145,477 @@
     </div>
   </header>
 
+  <!-- Section indicator -->
+  <nav class="dots" aria-label="Sections">
+    <a href="#home" data-dot="home"><span class="sr-only">Home</span><span class="dots__label" aria-hidden="true">Home</span></a>
+    <a href="#about" data-dot="about"><span class="sr-only">About and experience</span><span class="dots__label" aria-hidden="true">About</span></a>
+    <a href="#skills" data-dot="skills"><span class="sr-only">Skills</span><span class="dots__label" aria-hidden="true">Skills</span></a>
+    <a href="#projects" data-dot="projects"><span class="sr-only">Work</span><span class="dots__label" aria-hidden="true">Work</span></a>
+    <a href="#education" data-dot="education"><span class="sr-only">Education and certifications</span><span class="dots__label" aria-hidden="true">Education</span></a>
+    <a href="#contact" data-dot="contact"><span class="sr-only">Contact</span><span class="dots__label" aria-hidden="true">Contact</span></a>
+  </nav>
+
   <main id="main">
     <!-- ============ HERO ============ -->
-    <section class="hero" aria-labelledby="hero-title">
-      <!-- 3D scene: js/hero3d.js (Three.js) mounts a canvas here after page load.
-           The CSS orb underneath is the fallback for reduced motion / no WebGL. -->
-      <div class="hero__visual" aria-hidden="true">
-        <div class="hero__orb"><span></span><span></span><span></span></div>
-        <div class="hero__3d" id="hero-3d"></div>
-      </div>
-
+    <section class="panel hero" id="home" data-section aria-labelledby="hero-title">
       <div class="container hero__inner">
-        <p class="status">
-          <span class="status__dot" aria-hidden="true"></span>
-          Open to work
-        </p>
+        <div class="hero__copy">
+          <p class="status">
+            <span class="status__dot" aria-hidden="true"></span>
+            <span>Open to work</span>
+            <span class="status__sep" aria-hidden="true"></span>
+            <span class="status__meta">BS Software Engineering, Air University 2026</span>
+          </p>
 
-        <h1 class="hero__title" id="hero-title" aria-label="Muhammad Ahmer Shahzad">
-          <span class="hero__line" data-split aria-hidden="true">Muhammad Ahmer</span>
-          <span class="hero__line hero__line--grad" aria-hidden="true"><span data-split>Shahzad</span></span>
-        </h1>
+          <h1 class="hero__title" id="hero-title" aria-label="Muhammad Ahmer Shahzad">
+            <span class="hero__line" data-split aria-hidden="true">Muhammad Ahmer</span>
+            <span class="hero__line hero__line--accent" aria-hidden="true"><span data-split>Shahzad</span></span>
+          </h1>
 
-        <!-- Typing line: main.js types it out; the full text is always available to screen readers -->
-        <p class="hero__typed mono">
-          <span class="sr-only">Junior Full Stack Developer · React · Next.js · Node.js</span>
-          <span class="hero__typed-text" aria-hidden="true" data-type="Junior Full Stack Developer · React · Next.js · Node.js">Junior Full Stack Developer · React · Next.js · Node.js</span>
-        </p>
+          <!-- Typing line: main.js types it; the full text is always available to screen readers -->
+          <p class="hero__role">
+            <span class="sr-only">Junior Full Stack Developer · React · Next.js · Node.js</span>
+            <span class="hero__typed" aria-hidden="true" data-type="Junior Full Stack Developer · React · Next.js · Node.js">Junior Full Stack Developer · React · Next.js · Node.js</span>
+          </p>
 
-        <p class="lead">
-          Software Engineering graduate (Air University, 2026). I build complete web products, from a business management system for a printing company to a customization and ordering platform for a US-based client, built with my project partner.
-        </p>
+          <p class="hero__tagline">I build complete web products, from business systems to customer-facing ordering platforms.</p>
 
-        <div class="hero__ctas">
-          <a class="btn btn--primary" href="#projects" data-magnetic>
-            View Projects
-            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-          <a class="btn btn--ghost" href="assets/Muhammad_Ahmer_Shahzad_CV_Public.pdf" download="Muhammad-Ahmer-Shahzad-CV.pdf" data-magnetic>
-            Download CV
-            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
-          </a>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="#projects" data-magnetic>
+              View Projects
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="assets/Muhammad_Ahmer_Shahzad_CV_Public.pdf" download="Muhammad-Ahmer-Shahzad-CV.pdf" data-magnetic>
+              Download CV
+              <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+            </a>
+          </div>
         </div>
 
-        <a class="hero__scroll mono" href="#about" aria-label="Scroll to About section">
-          <span class="hero__scroll-line" aria-hidden="true"></span> Scroll
-        </a>
+        <!-- where the 3D geometry sits in the hero; the CSS orb shows until WebGL is ready -->
+        <div class="hero__stage" data-anchor="hero" aria-hidden="true">
+          <div class="orb"><span></span><span></span><span></span></div>
+        </div>
       </div>
+
+      <a class="hero__scroll label" href="#about" aria-label="Scroll to About">
+        <span class="hero__scroll-line" aria-hidden="true"></span> Scroll
+      </a>
     </section>
 
-    <!-- ============ 01 ABOUT ============ -->
-    <section class="section" id="about" aria-labelledby="about-title">
+    <!-- ============ 01 ABOUT + EXPERIENCE ============ -->
+    <section class="panel" id="about" data-section aria-labelledby="about-title">
+      <span class="panel__anchor panel__anchor--right" data-anchor="about" aria-hidden="true"></span>
       <div class="container">
-        <header class="section-head" data-reveal>
-          <span class="section-head__num mono">01</span>
-          <h2 class="section-head__title" id="about-title">About <span class="grad">me</span></h2>
-          <span class="section-head__kicker mono">The short version</span>
+        <header class="section-head">
+          <p class="label section-head__kicker"><span class="accent">01</span> About</p>
+          <h2 class="section-head__title" id="about-title" data-reveal-text>I turn slow, manual workflows into <span class="accent">fast, reliable software.</span></h2>
         </header>
 
         <div class="about">
           <div class="about__text" data-reveal>
-            <p class="about__pull">
-              I like turning slow, manual workflows into <span class="grad">fast, reliable software</span>.
-            </p>
-            <p>
-              I'm a Software Engineering graduate from Air University (2026) and a Junior Full Stack Developer. Together with my project partner, I built a customization and ordering platform for a US-based client, working on both the front end (React.js) and the back end (Firebase Firestore).
-            </p>
-            <p>
-              Most recently I built PrintFlow, a business management system for AA Graphics, a printing and signage company in Rawalpindi. I communicate comfortably in English (IELTS Academic, CEFR B2) and I'm looking for a Junior Full Stack or Front-End role where I can contribute to real products and keep growing.
-            </p>
-
+            <p>Software Engineering graduate from Air University (2026). With my project partner, I built a customization and ordering platform for a US-based client, working on both the front end (React.js) and the back end (Firebase Firestore).</p>
+            <p>Most recently I built PrintFlow, a business management system for AA Graphics in Rawalpindi. I'm looking for a Junior Full Stack or Front-End role.</p>
             <dl class="facts">
-              <div class="glass"><dt class="mono">Based in</dt><dd>Islamabad, Pakistan</dd></div>
-              <div class="glass"><dt class="mono">Degree</dt><dd>BS Software Engineering, Air University</dd></div>
-              <div class="glass"><dt class="mono">Focus</dt><dd>React · Next.js · Node.js · Firebase</dd></div>
-              <div class="glass"><dt class="mono">Speaks</dt><dd>Urdu, Punjabi, English (B2)</dd></div>
+              <div><dt class="label">Based in</dt><dd>Islamabad, Pakistan</dd></div>
+              <div><dt class="label">Focus</dt><dd>React · Next.js · Node.js · Firebase</dd></div>
+              <div><dt class="label">English</dt><dd>IELTS Academic 6.0 (CEFR B2)</dd></div>
+              <div><dt class="label">Also speaks</dt><dd>Urdu, Punjabi</dd></div>
             </dl>
           </div>
 
-          <!-- Terminal widget: main.js types these lines when they scroll into view -->
-          <figure class="terminal" data-reveal>
-            <figcaption class="sr-only">Terminal summary: Muhammad Ahmer Shahzad, Junior Full Stack Developer. Stack: React.js, Next.js, TypeScript, JavaScript, Node.js, Firebase, PWA, SQL and NoSQL, Git. Projects: PrintFlow and Flyboys Warehouse. Open to work.</figcaption>
-            <div class="terminal__bar" aria-hidden="true">
-              <span></span><span></span><span></span>
-              <em class="mono">ahmer@portfolio: ~</em>
-            </div>
-            <ol class="terminal__body mono" aria-hidden="true">
-              <li><span class="t-cmd">whoami</span><span class="t-out">Muhammad Ahmer Shahzad, Junior Full Stack Developer</span></li>
-              <li><span class="t-cmd">cat stack.txt</span><span class="t-out">React.js  Next.js  TypeScript  JavaScript&#10;Node.js  Firebase  PWA  SQL/NoSQL  Git</span></li>
-              <li><span class="t-cmd">ls projects/</span><span class="t-out">printflow/  flyboys-warehouse/</span></li>
-              <li><span class="t-cmd">echo "Open to work"</span><span class="t-out t-out--accent">Open to work</span></li>
+          <div class="about__exp" data-reveal>
+            <h3 class="label about__exp-title">Experience</h3>
+            <ol class="timeline">
+              <li class="timeline__item card">
+                <p class="timeline__date label">2026</p>
+                <h4 class="timeline__role">Full Stack Developer · PrintFlow</h4>
+                <p class="timeline__org">AA Graphics, Rawalpindi</p>
+                <p class="timeline__desc">Business management system: quotation to invoice, production, stock, ledgers, HR and payroll.</p>
+              </li>
+              <li class="timeline__item card">
+                <p class="timeline__date label">Oct 2025 – May 2026</p>
+                <h4 class="timeline__role">Full Stack Developer · Flyboys Warehouse</h4>
+                <p class="timeline__org">Final Year Project · US-based client · with a project partner</p>
+                <p class="timeline__desc">React.js front end and Firebase back end for a customization and ordering platform.</p>
+              </li>
             </ol>
-          </figure>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ============ 02 SKILLS ============ -->
-    <section class="section section--skills" id="skills" aria-labelledby="skills-title">
+    <section class="panel" id="skills" data-section aria-labelledby="skills-title">
       <div class="container">
-        <header class="section-head" data-reveal>
-          <span class="section-head__num mono">02</span>
-          <h2 class="section-head__title" id="skills-title">Skills &amp; <span class="grad">toolkit</span></h2>
-          <span class="section-head__kicker mono">What I work with</span>
+        <header class="section-head">
+          <p class="label section-head__kicker"><span class="accent">02</span> Skills</p>
+          <h2 class="section-head__title" id="skills-title" data-reveal-text>The toolkit</h2>
         </header>
-      </div>
 
-      <!-- Infinite marquee: the list is duplicated so the loop is seamless -->
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee__track">
-          <ul class="marquee__list">
-            <li>React.js</li><li>Next.js</li><li>TypeScript</li><li>JavaScript</li><li>Node.js</li><li>Firebase</li><li>PWA</li><li>SQL / NoSQL</li><li>Git</li>
-          </ul>
-          <ul class="marquee__list">
-            <li>React.js</li><li>Next.js</li><li>TypeScript</li><li>JavaScript</li><li>Node.js</li><li>Firebase</li><li>PWA</li><li>SQL / NoSQL</li><li>Git</li>
-          </ul>
-        </div>
-      </div>
+        <div class="skills">
+          <div class="skills__panel" data-reveal>
+            <!-- Tabs: all panels are visible without JS; main.js turns them into tabs -->
+            <div class="tabs" role="tablist" aria-label="Skill categories" data-tabs>
+              <button type="button" role="tab" id="tab-front" aria-controls="panel-front" data-cat="front">Frontend</button>
+              <button type="button" role="tab" id="tab-lang" aria-controls="panel-lang" data-cat="lang">Languages</button>
+              <button type="button" role="tab" id="tab-back" aria-controls="panel-back" data-cat="back">Backend &amp; data</button>
+              <button type="button" role="tab" id="tab-practice" aria-controls="panel-practice" data-cat="practice">Practice</button>
+            </div>
 
-      <div class="container">
-        <!-- Animated skill grid: tiles stagger in on scroll (GSAP) and glow on hover -->
-        <ul class="skill-grid" aria-label="Skills">
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-react"/></svg><span class="skill__name">React.js</span><span class="skill__cat mono">Frontend</span></li>
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-next"/></svg><span class="skill__name">Next.js</span><span class="skill__cat mono">Frontend</span></li>
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-ts"/></svg><span class="skill__name">TypeScript</span><span class="skill__cat mono">Language</span></li>
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-js"/></svg><span class="skill__name">JavaScript</span><span class="skill__cat mono">Language</span></li>
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-node"/></svg><span class="skill__name">Node.js</span><span class="skill__cat mono">Backend</span></li>
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-firebase"/></svg><span class="skill__name">Firebase <small>(Firestore &amp; Auth)</small></span><span class="skill__cat mono">Backend</span></li>
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-html"/></svg><span class="skill__name">HTML5</span><span class="skill__cat mono">Frontend</span></li>
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-css"/></svg><span class="skill__name">CSS3</span><span class="skill__cat mono">Frontend</span></li>
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-pwa"/></svg><span class="skill__name">PWA</span><span class="skill__cat mono">Web platform</span></li>
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-db"/></svg><span class="skill__name">SQL / NoSQL</span><span class="skill__cat mono">Databases</span></li>
-          <li class="skill glass skill--wide" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-qa"/></svg><span class="skill__name">Software Quality Assurance &amp; Testing</span><span class="skill__cat mono">Quality</span></li>
-          <li class="skill glass skill--wide" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-net"/></svg><span class="skill__name">Computer Networks <small>(Cisco Packet Tracer)</small></span><span class="skill__cat mono">Networking</span></li>
-          <li class="skill glass" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-git"/></svg><span class="skill__name">Git / GitHub</span><span class="skill__cat mono">Tools</span></li>
-          <li class="skill glass skill--wide" data-reveal-item><svg class="skill__icon" aria-hidden="true"><use href="#s-ai"/></svg><span class="skill__name">AI-assisted development <small>(Claude, ChatGPT)</small></span><span class="skill__cat mono">AI tools</span></li>
-        </ul>
+            <div class="tabpanel" role="tabpanel" id="panel-front" aria-labelledby="tab-front">
+              <ul class="chips">
+                <li data-skill="s-react" data-cat="front"><svg class="icon" aria-hidden="true"><use href="#s-react"/></svg>React.js</li>
+                <li data-skill="s-next" data-cat="front"><svg class="icon" aria-hidden="true"><use href="#s-next"/></svg>Next.js</li>
+                <li data-skill="s-html" data-cat="front"><svg class="icon" aria-hidden="true"><use href="#s-html"/></svg>HTML5</li>
+                <li data-skill="s-css" data-cat="front"><svg class="icon" aria-hidden="true"><use href="#s-css"/></svg>CSS3</li>
+                <li data-skill="s-pwa" data-cat="front"><svg class="icon" aria-hidden="true"><use href="#s-pwa"/></svg>PWA</li>
+              </ul>
+            </div>
+            <div class="tabpanel" role="tabpanel" id="panel-lang" aria-labelledby="tab-lang">
+              <ul class="chips">
+                <li data-skill="s-ts" data-cat="lang"><svg class="icon" aria-hidden="true"><use href="#s-ts"/></svg>TypeScript</li>
+                <li data-skill="s-js" data-cat="lang"><svg class="icon" aria-hidden="true"><use href="#s-js"/></svg>JavaScript</li>
+              </ul>
+            </div>
+            <div class="tabpanel" role="tabpanel" id="panel-back" aria-labelledby="tab-back">
+              <ul class="chips">
+                <li data-skill="s-node" data-cat="back"><svg class="icon" aria-hidden="true"><use href="#s-node"/></svg>Node.js</li>
+                <li data-skill="s-firebase" data-cat="back"><svg class="icon" aria-hidden="true"><use href="#s-firebase"/></svg>Firebase (Firestore &amp; Auth)</li>
+                <li data-skill="s-db" data-cat="back"><svg class="icon" aria-hidden="true"><use href="#s-db"/></svg>SQL / NoSQL</li>
+              </ul>
+            </div>
+            <div class="tabpanel" role="tabpanel" id="panel-practice" aria-labelledby="tab-practice">
+              <ul class="chips">
+                <li data-skill="s-qa" data-cat="practice"><svg class="icon" aria-hidden="true"><use href="#s-qa"/></svg>Software Quality Assurance &amp; Testing</li>
+                <li data-skill="s-net" data-cat="practice"><svg class="icon" aria-hidden="true"><use href="#s-net"/></svg>Computer Networks (Cisco Packet Tracer)</li>
+                <li data-skill="s-git" data-cat="practice"><svg class="icon" aria-hidden="true"><use href="#s-git"/></svg>Git / GitHub</li>
+                <li data-skill="s-ai" data-cat="practice"><svg class="icon" aria-hidden="true"><use href="#s-ai"/></svg>AI-assisted development (Claude, ChatGPT)</li>
+              </ul>
+            </div>
 
-        <div class="langs glass" data-reveal>
-          <span class="langs__label mono">Spoken languages</span>
-          <ul>
-            <li><span>Urdu</span><span class="mono">Fluent</span></li>
-            <li><span>Punjabi</span><span class="mono">Fluent</span></li>
-            <li><span>English</span><span class="mono">CEFR B2 · IELTS Academic 6.0</span></li>
-          </ul>
+            <p class="skills__hint label" aria-hidden="true">Drag the sphere · hover an icon</p>
+          </div>
+
+          <!-- 3D skill sphere sits here (drag to rotate). Static icon ring as fallback. -->
+          <div class="skills__orbit" data-anchor="skills" data-orbit aria-hidden="true">
+            <ul class="orbit-fallback">
+              <li><svg><use href="#s-react"/></svg></li><li><svg><use href="#s-next"/></svg></li>
+              <li><svg><use href="#s-ts"/></svg></li><li><svg><use href="#s-js"/></svg></li>
+              <li><svg><use href="#s-node"/></svg></li><li><svg><use href="#s-firebase"/></svg></li>
+              <li><svg><use href="#s-html"/></svg></li><li><svg><use href="#s-css"/></svg></li>
+              <li><svg><use href="#s-pwa"/></svg></li><li><svg><use href="#s-db"/></svg></li>
+              <li><svg><use href="#s-qa"/></svg></li><li><svg><use href="#s-net"/></svg></li>
+              <li><svg><use href="#s-git"/></svg></li><li><svg><use href="#s-ai"/></svg></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 03 PROJECTS ============ -->
-    <section class="section" id="projects" aria-labelledby="projects-title">
-      <div class="container">
-        <header class="section-head" data-reveal>
-          <span class="section-head__num mono">03</span>
-          <h2 class="section-head__title" id="projects-title">Selected <span class="grad">work</span></h2>
-          <span class="section-head__kicker mono">Case studies</span>
+    <!-- ============ 03 PROJECTS (pinned horizontal showcase on desktop) ============ -->
+    <section class="panel work" id="projects" data-section aria-labelledby="projects-title">
+      <div class="container work__head">
+        <header class="section-head">
+          <p class="label section-head__kicker"><span class="accent">03</span> Work</p>
+          <h2 class="section-head__title" id="projects-title" data-reveal-text>Selected work</h2>
         </header>
+        <p class="work__hint label" aria-hidden="true">Scroll <span class="accent">→</span></p>
+      </div>
 
-        <!-- Project 01: PrintFlow -->
-        <article class="project project--feature glass" id="printflow" data-reveal aria-labelledby="p1-title">
-          <div class="project__visual">
-            <!-- Screenshot gallery in a tilted 3D browser mockup that straightens on hover/scroll.
-                 Images come from tools/capture-printflow.mjs (sample demo data only). -->
-            <div class="pf-gallery" data-gallery>
-              <div class="device" data-device>
-                <div class="device__bar" aria-hidden="true">
-                  <span></span><span></span><span></span>
-                  <em class="mono">printflow · demo</em>
+      <div class="work__viewport">
+        <div class="work__track">
+          <!-- Project 01: PrintFlow -->
+          <article class="project card card--lift project--feature" id="printflow" data-tilt aria-labelledby="p1-title">
+            <div class="project__visual" data-depth>
+              <!-- Screenshot gallery in a tilted 3D browser mockup that straightens on hover/scroll.
+                   While data-ready="false" no images are requested: an app skeleton shows instead.
+                   After running tools/capture-printflow.mjs, set data-ready="true". -->
+              <div class="pf-gallery" data-gallery data-ready="false">
+                <div class="device" data-device>
+                  <div class="device__bar" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <em class="label">printflow · demo</em>
+                  </div>
+                  <div class="device__screen">
+                    <div class="slide is-active" data-slide data-label="Business dashboard">
+                      <img data-src="assets/printflow/overview-1440.webp" data-srcset="assets/printflow/overview-1440.webp 1440w, assets/printflow/overview.webp 2880w" sizes="(min-width: 1024px) 560px, 92vw" width="1440" height="900" decoding="async" alt="PrintFlow business dashboard with sample data">
+                    </div>
+                    <div class="slide" data-slide data-label="Job orders">
+                      <img data-src="assets/printflow/jobs-1440.webp" data-srcset="assets/printflow/jobs-1440.webp 1440w, assets/printflow/jobs.webp 2880w" sizes="(min-width: 1024px) 560px, 92vw" width="1440" height="900" decoding="async" alt="PrintFlow job orders list with sample data">
+                    </div>
+                    <div class="slide" data-slide data-label="Production board">
+                      <img data-src="assets/printflow/floor-1440.webp" data-srcset="assets/printflow/floor-1440.webp 1440w, assets/printflow/floor.webp 2880w" sizes="(min-width: 1024px) 560px, 92vw" width="1440" height="900" decoding="async" alt="PrintFlow production board with sample data">
+                    </div>
+                    <div class="slide" data-slide data-label="Sales invoices">
+                      <img data-src="assets/printflow/invoices-1440.webp" data-srcset="assets/printflow/invoices-1440.webp 1440w, assets/printflow/invoices.webp 2880w" sizes="(min-width: 1024px) 560px, 92vw" width="1440" height="900" decoding="async" alt="PrintFlow sales invoices with sample data">
+                    </div>
+                    <div class="slide" data-slide data-label="Quotations">
+                      <img data-src="assets/printflow/quotes-1440.webp" data-srcset="assets/printflow/quotes-1440.webp 1440w, assets/printflow/quotes.webp 2880w" sizes="(min-width: 1024px) 560px, 92vw" width="1440" height="900" decoding="async" alt="PrintFlow quotations list with sample data">
+                    </div>
+                    <!-- placeholder: an abstract app skeleton (shown until screenshots exist) -->
+                    <div class="skeleton" aria-hidden="true">
+                      <span class="skeleton__side"></span>
+                      <span class="skeleton__top"></span>
+                      <span class="skeleton__kpi"></span><span class="skeleton__kpi"></span><span class="skeleton__kpi"></span>
+                      <span class="skeleton__chart"></span>
+                      <span class="skeleton__rows"></span>
+                      <span class="skeleton__note label">Screenshots coming soon</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="device__screen" aria-live="polite">
-                  <div class="slide is-active" data-slide data-label="Business dashboard">
-                    <img src="assets/printflow/overview-1440.webp" srcset="assets/printflow/overview-1440.webp 1440w, assets/printflow/overview.webp 2880w" sizes="(min-width: 1024px) 680px, 92vw" width="1440" height="900" loading="lazy" decoding="async" alt="PrintFlow business dashboard with sample data">
-                    <span class="slide__missing mono">Screenshot coming soon</span>
+
+                <div class="pf-gallery__controls">
+                  <button class="icon-btn" type="button" data-prev aria-label="Previous screen">
+                    <svg class="icon icon--flip" aria-hidden="true"><use href="#i-chevron"/></svg>
+                  </button>
+                  <div class="pf-gallery__tabs" role="tablist" aria-label="PrintFlow screens"></div>
+                  <button class="icon-btn" type="button" data-next aria-label="Next screen">
+                    <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>
+                  </button>
+                </div>
+                <p class="pf-gallery__caption">Screenshots use sample demo data.</p>
+              </div>
+            </div>
+
+            <div class="project__content" data-depth>
+              <p class="project__meta label"><span class="accent">P / 01</span><span>2026</span><span>AA Graphics · Rawalpindi</span></p>
+              <h3 class="project__title" id="p1-title">PrintFlow <span class="project__subtitle">Business Management System</span></h3>
+
+              <dl class="project__facts">
+                <div>
+                  <dt class="label">Problem</dt>
+                  <dd>Their purchased software's dashboard took up to 2 hours to open, it had no attendance or staff management, and it gave them no access to their own data.</dd>
+                </div>
+                <div>
+                  <dt class="label">What I built</dt>
+                  <dd>
+                    <ul class="features">
+                      <li>Quotation → job order → invoice</li>
+                      <li>Production board</li>
+                      <li>Purchases, stock, ledgers &amp; reports</li>
+                      <li>HR, attendance (server time) &amp; payroll</li>
+                      <li>Role-based logins (owner, CEO, staff)</li>
+                      <li>Multi-branch</li>
+                      <li>Installable PWA</li>
+                    </ul>
+                  </dd>
+                </div>
+                <div>
+                  <dt class="label">Stack</dt>
+                  <dd><ul class="tags"><li>JavaScript</li><li>HTML</li><li>CSS (PWA)</li><li>Node.js</li><li>Firebase Firestore</li><li>Firebase Authentication</li></ul></dd>
+                </div>
+                <div>
+                  <dt class="label">My role</dt>
+                  <dd class="project__note">
+                    <svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>
+                    <span>Built with AI-assisted development (Claude); requirements, design and testing led by me.</span>
+                  </dd>
+                </div>
+              </dl>
+
+              <p class="chip"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg> Private project · code not public</p>
+            </div>
+          </article>
+
+          <!-- Project 02: Flyboys Warehouse -->
+          <article class="project card card--lift" data-tilt aria-labelledby="p2-title">
+            <div class="project__visual" aria-hidden="true" data-depth>
+              <!-- Illustrative mock of the product (no client data). -->
+              <div class="mock">
+                <div class="mock__bar"><span></span><span></span><span></span><em class="label">customizer / preview</em></div>
+                <div class="mock__body">
+                  <div class="mock__canvas">
+                    <div class="mock__patch">
+                      <span class="mock__ring"></span>
+                      <span class="mock__wing mock__wing--l"></span>
+                      <span class="mock__wing mock__wing--r"></span>
+                      <span class="mock__logo label">YOUR<br>LOGO</span>
+                    </div>
+                    <span class="mock__tag label"><span class="mock__live"></span>Live preview</span>
                   </div>
-                  <div class="slide" data-slide data-label="Job orders">
-                    <img src="assets/printflow/jobs-1440.webp" srcset="assets/printflow/jobs-1440.webp 1440w, assets/printflow/jobs.webp 2880w" sizes="(min-width: 1024px) 680px, 92vw" width="1440" height="900" loading="lazy" decoding="async" alt="PrintFlow job orders list with sample data">
-                    <span class="slide__missing mono">Screenshot coming soon</span>
-                  </div>
-                  <div class="slide" data-slide data-label="Production board">
-                    <img src="assets/printflow/floor-1440.webp" srcset="assets/printflow/floor-1440.webp 1440w, assets/printflow/floor.webp 2880w" sizes="(min-width: 1024px) 680px, 92vw" width="1440" height="900" loading="lazy" decoding="async" alt="PrintFlow production board with sample data">
-                    <span class="slide__missing mono">Screenshot coming soon</span>
-                  </div>
-                  <div class="slide" data-slide data-label="Sales invoices">
-                    <img src="assets/printflow/invoices-1440.webp" srcset="assets/printflow/invoices-1440.webp 1440w, assets/printflow/invoices.webp 2880w" sizes="(min-width: 1024px) 680px, 92vw" width="1440" height="900" loading="lazy" decoding="async" alt="PrintFlow sales invoices with sample data">
-                    <span class="slide__missing mono">Screenshot coming soon</span>
-                  </div>
-                  <div class="slide" data-slide data-label="Quotations">
-                    <img src="assets/printflow/quotes-1440.webp" srcset="assets/printflow/quotes-1440.webp 1440w, assets/printflow/quotes.webp 2880w" sizes="(min-width: 1024px) 680px, 92vw" width="1440" height="900" loading="lazy" decoding="async" alt="PrintFlow quotations list with sample data">
-                    <span class="slide__missing mono">Screenshot coming soon</span>
+                  <div class="mock__panel">
+                    <span class="mock__label label">Size</span>
+                    <div class="mock__sizes label"><span>S</span><span class="is-on">M</span><span>L</span><span>XL</span></div>
+                    <span class="mock__label label">Artwork</span>
+                    <div class="mock__upload">logo.png <span class="accent">✓</span></div>
+                    <div class="mock__cta label">Place order →</div>
                   </div>
                 </div>
               </div>
-
-              <div class="pf-gallery__controls">
-                <button class="icon-btn pf-gallery__prev" type="button" data-prev aria-label="Previous screenshot">
-                  <svg class="icon icon--flip" aria-hidden="true"><use href="#i-chevron"/></svg>
-                </button>
-                <div class="pf-gallery__tabs" role="tablist" aria-label="PrintFlow screens"></div>
-                <button class="icon-btn pf-gallery__next" type="button" data-next aria-label="Next screenshot">
-                  <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>
-                </button>
-              </div>
-              <p class="pf-gallery__caption mono">Screenshots use sample demo data.</p>
-            </div>
-          </div>
-
-          <div class="project__content">
-            <div class="project__meta mono">
-              <span>P / 01</span>
-              <span>2026</span>
-              <span>AA Graphics · Rawalpindi</span>
-            </div>
-            <h3 class="project__title" id="p1-title"><span class="u-line">PrintFlow</span> <span class="project__subtitle">Business Management System</span></h3>
-            <p class="project__summary">
-              A complete business system for AA Graphics, a printing and signage company in Rawalpindi.
-            </p>
-
-            <div class="project__problem">
-              <span class="mono">The problem</span>
-              <p>Their purchased software's dashboard took up to 2 hours to open, it had no attendance or staff management, and it gave them no access to their own data.</p>
             </div>
 
-            <ul class="features" aria-label="Features">
-              <li>Quotation → job order → invoice</li>
-              <li>Production board</li>
-              <li>Purchases, stock, ledgers &amp; reports</li>
-              <li>HR, attendance (server time) &amp; payroll</li>
-              <li>Role-based logins (owner, CEO, staff)</li>
-              <li>Multi-branch</li>
-              <li>Installable PWA</li>
-            </ul>
+            <div class="project__content" data-depth>
+              <p class="project__meta label"><span class="accent">P / 02</span><span>Final Year Project</span><span>Oct 2025 – May 2026</span></p>
+              <h3 class="project__title" id="p2-title">Flyboys Warehouse</h3>
 
-            <ul class="tags tags--small" aria-label="Tech stack">
-              <li>JavaScript</li><li>HTML</li><li>CSS (PWA)</li><li>Node.js</li><li>Firebase Firestore</li><li>Firebase Authentication</li>
-            </ul>
-
-            <p class="project__note">
-              <svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>
-              Built with AI-assisted development (Claude); requirements, design and testing led by me.
-            </p>
-
-            <div class="project__actions">
-              <span class="chip mono"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg> Private project · code not public</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 02: Flyboys Warehouse -->
-        <article class="project glass" data-tilt data-reveal aria-labelledby="p2-title">
-          <div class="project__visual" aria-hidden="true">
-            <!-- Illustrative mock of the product (no client data). -->
-            <div class="mock">
-              <div class="mock__bar"><span></span><span></span><span></span><em class="mono">customizer / preview</em></div>
-              <div class="mock__body">
-                <div class="mock__canvas">
-                  <div class="mock__patch">
-                    <span class="mock__ring"></span>
-                    <span class="mock__wing mock__wing--l"></span>
-                    <span class="mock__wing mock__wing--r"></span>
-                    <span class="mock__logo mono">YOUR<br>LOGO</span>
-                  </div>
-                  <span class="mock__tag mono"><span class="mock__live"></span>Live preview</span>
+              <dl class="project__facts">
+                <div>
+                  <dt class="label">Problem</dt>
+                  <dd>A US-based company that makes custom fighter-pilot gear took orders through a slow, email-based process.</dd>
                 </div>
-                <div class="mock__panel">
-                  <span class="mock__label mono">Size</span>
-                  <div class="mock__sizes mono"><span>S</span><span class="is-on">M</span><span>L</span><span>XL</span></div>
-                  <span class="mock__label mono">Artwork</span>
-                  <div class="mock__upload mono">logo.png <span class="accent">✓</span></div>
-                  <div class="mock__cta mono">Place order →</div>
+                <div>
+                  <dt class="label">What I built</dt>
+                  <dd>
+                    <ul class="features features--single">
+                      <li><strong>Front end:</strong> the customization and ordering interface with React.js and React Router, including a real-time design preview (Cloudinary).</li>
+                      <li><strong>Back end:</strong> the Firebase Firestore database, size selection and direct online ordering.</li>
+                    </ul>
+                  </dd>
                 </div>
-              </div>
-            </div>
-          </div>
+                <div>
+                  <dt class="label">Stack</dt>
+                  <dd><ul class="tags"><li>React.js</li><li>React Router</li><li>Firebase Firestore</li><li>Cloudinary</li></ul></dd>
+                </div>
+                <div>
+                  <dt class="label">My role</dt>
+                  <dd>Built with a project partner. I worked on both the front end (React.js) and the back end (Firebase).</dd>
+                </div>
+              </dl>
 
-          <div class="project__content">
-            <div class="project__meta mono">
-              <span>P / 02</span>
-              <span>Final Year Project</span>
-              <span>Oct 2025 – May 2026</span>
-            </div>
-            <h3 class="project__title" id="p2-title"><span class="u-line">Flyboys Warehouse</span></h3>
-            <p class="project__summary">
-              Built with a project partner: a web customization and ordering platform for a US-based company that makes custom fighter-pilot gear. It replaced their slow, email-based ordering process.
-            </p>
-
-            <ol class="project__points">
-              <li>
-                <span class="mono">Front end</span>
-                I built the customization and ordering interface with React.js and React Router, including a real-time design preview (Cloudinary) where customers create and see their personalised logo instantly.
-              </li>
-              <li>
-                <span class="mono">Back end</span>
-                I designed the Firebase Firestore database and implemented size selection and direct online ordering.
-              </li>
-              <li>
-                <span class="mono">Impact</span>
-                A faster, more interactive end-to-end workflow, from first design to placed order.
-              </li>
-            </ol>
-
-            <ul class="tags tags--small" aria-label="Tech stack">
-              <li>React.js</li><li>React Router</li><li>Firebase Firestore</li><li>Cloudinary</li>
-            </ul>
-
-            <div class="project__actions">
-              <button class="btn btn--ghost" type="button" data-dialog-open="cert-dialog" data-magnetic>
+              <button class="btn btn--ghost btn--sm" type="button" data-dialog-open="cert-dialog" data-magnetic>
                 <svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>
                 Certificate
               </button>
-              <span class="project__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <!-- Project 03: AA Graphics websites (work in progress) -->
-        <article class="project project--wip glass" data-tilt data-reveal aria-labelledby="p3-title">
-          <div class="project__content project__content--full">
-            <div class="project__meta mono">
-              <span>P / 03</span>
-              <span class="badge">Work in progress</span>
-            </div>
-            <h3 class="project__title" id="p3-title"><span class="u-line">AA Graphics</span></h3>
-            <p class="project__summary">
-              Two upcoming websites for AA Graphics.
-            </p>
+          <!-- Project 03: AA Graphics websites (work in progress). PrintFlow is complete and shown above. -->
+          <article class="project card card--lift project--wip" data-tilt aria-labelledby="p3-title">
+            <div class="project__content project__content--full" data-depth>
+              <p class="project__meta label"><span class="accent">P / 03</span><span class="badge">Work in progress</span></p>
+              <h3 class="project__title" id="p3-title">AA Graphics</h3>
+              <p class="project__lede">Two upcoming websites for AA Graphics.</p>
 
-            <div class="subprojects">
-              <!-- TODO: AA Graphics — Website 01: add description, stack and live link -->
-              <div class="subproject">
-                <span class="subproject__num mono">03.1</span>
-                <h4 class="subproject__title">Website one</h4>
-                <p class="subproject__desc todo">Description coming soon</p>
-                <ul class="tags tags--small" aria-label="Tech stack"><li class="todo">Stack TBA</li></ul>
-                <span class="subproject__link mono todo">Link coming soon</span>
-              </div>
-              <!-- TODO: AA Graphics — Website 02: add description, stack and live link -->
-              <div class="subproject">
-                <span class="subproject__num mono">03.2</span>
-                <h4 class="subproject__title">Website two</h4>
-                <p class="subproject__desc todo">Description coming soon</p>
-                <ul class="tags tags--small" aria-label="Tech stack"><li class="todo">Stack TBA</li></ul>
-                <span class="subproject__link mono todo">Link coming soon</span>
+              <div class="subprojects">
+                <!-- TODO: AA Graphics — Website 01: add description, stack and live link -->
+                <div class="subproject">
+                  <p class="label accent">03.1</p>
+                  <h4 class="subproject__title">Website one</h4>
+                  <p class="subproject__desc">Coming soon</p>
+                  <ul class="tags"><li class="tags__todo">Stack to be announced</li></ul>
+                </div>
+                <!-- TODO: AA Graphics — Website 02: add description, stack and live link -->
+                <div class="subproject">
+                  <p class="label accent">03.2</p>
+                  <h4 class="subproject__title">Website two</h4>
+                  <p class="subproject__desc">Coming soon</p>
+                  <ul class="tags"><li class="tags__todo">Stack to be announced</li></ul>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- ============ 04 EXPERIENCE ============ -->
-    <section class="section" id="experience" aria-labelledby="experience-title">
+    <!-- ============ 04 EDUCATION + CERTIFICATIONS ============ -->
+    <section class="panel" id="education" data-section aria-labelledby="education-title">
+      <span class="panel__anchor panel__anchor--right" data-anchor="education" aria-hidden="true"></span>
       <div class="container">
-        <header class="section-head" data-reveal>
-          <span class="section-head__num mono">04</span>
-          <h2 class="section-head__title" id="experience-title"><span class="grad">Experience</span></h2>
-          <span class="section-head__kicker mono">Where I've shipped</span>
+        <header class="section-head">
+          <p class="label section-head__kicker"><span class="accent">04</span> Education</p>
+          <h2 class="section-head__title" id="education-title" data-reveal-text>Education &amp; honours</h2>
         </header>
 
-        <ol class="timeline">
-          <li class="timeline__item glass" data-reveal>
-            <p class="timeline__date mono">2026</p>
-            <div class="timeline__body">
-              <h3 class="timeline__role">Full Stack Developer, PrintFlow</h3>
-              <p class="timeline__org mono">AA Graphics · Rawalpindi, Pakistan</p>
-              <ul class="bullets">
-                <li>Built a complete business system for a printing and signage company, replacing purchased software whose dashboard took up to two hours to open, had no attendance or staff management, and gave no access to the business's own data.</li>
-                <li>Sales flow from quotation to job order to invoice, plus a production board, purchases, stock, ledgers and reports.</li>
-                <li>HR and payroll with attendance using online server time; role-based logins (owner, CEO, staff) and multi-branch support.</li>
-                <li>JavaScript, HTML and CSS front end (installable PWA), Node.js, Firebase Firestore and Firebase Authentication. AI-assisted development with Claude; requirements, design and testing led by me.</li>
-              </ul>
-            </div>
-          </li>
-          <li class="timeline__item glass" data-reveal>
-            <p class="timeline__date mono">Oct 2025 —<br>May 2026</p>
-            <div class="timeline__body">
-              <h3 class="timeline__role">Full Stack Developer (Final Year Project), Flyboys Warehouse</h3>
-              <p class="timeline__org mono">US-based client · with a project partner</p>
-              <ul class="bullets">
-                <li>Co-developed, in a two-person team, a web platform that replaced a slow, email-based ordering process.</li>
-                <li>Front end: built the customization and ordering interface with React.js and React Router, including a real-time design preview (Cloudinary).</li>
-                <li>Back end: designed the Firebase Firestore database and implemented size selection and direct online ordering.</li>
-              </ul>
-            </div>
-          </li>
-        </ol>
+        <div class="edu-grid">
+          <ol class="edu" data-reveal>
+            <li class="edu__item">
+              <span class="edu__year">2026</span>
+              <div>
+                <h3 class="edu__degree">BS Software Engineering (BSSE)</h3>
+                <p class="edu__school">Air University, Multan Campus · Oct 2022 – Jun 2026</p>
+                <p class="edu__note">Software engineering fundamentals, OOP, web application development</p>
+              </div>
+            </li>
+            <li class="edu__item">
+              <span class="edu__year">2022</span>
+              <div>
+                <h3 class="edu__degree">Intermediate (FSc)</h3>
+                <p class="edu__school">Fazaia Inter College, Shaheen Camp, Peshawar Cantt</p>
+              </div>
+            </li>
+            <li class="edu__item">
+              <span class="edu__year">2020</span>
+              <div>
+                <h3 class="edu__degree">Matriculation (SSC)</h3>
+                <p class="edu__school">F.G Fazaia Secondary School, PAF Base Shaheen Camp, Peshawar</p>
+              </div>
+            </li>
+          </ol>
+
+          <ul class="certs" aria-label="Certifications and honours">
+            <li class="cert card card--lift" data-reveal-item>
+              <span class="label accent">Language</span>
+              <h3 class="cert__title">IELTS Academic</h3>
+              <p class="cert__detail">Overall Band 6.0 (CEFR B2)</p>
+            </li>
+            <li class="cert card card--lift" data-reveal-item>
+              <span class="label accent">2018</span>
+              <h3 class="cert__title">Computer Literacy Course</h3>
+              <p class="cert__detail">Pakistan Air Force, PAF Base Rafiqui</p>
+            </li>
+            <li class="cert card card--lift" data-reveal-item>
+              <span class="label accent">Oct 2025</span>
+              <h3 class="cert__title">Organizing Committee Member</h3>
+              <p class="cert__detail">Blood Donation Camp, Regional Blood Center Multan / Air University Multan Campus</p>
+            </li>
+            <li class="cert card card--lift cert--accent" data-reveal-item>
+              <span class="label">Feb 2025</span>
+              <h3 class="cert__title">Certificate of Appreciation, Blood Donor</h3>
+              <p class="cert__detail">Recognized by Regional Blood Center Multan for donating blood and saving 3 lives.</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <!-- ============ 05 EDUCATION ============ -->
-    <section class="section" id="education" aria-labelledby="education-title">
+    <!-- ============ 05 CONTACT ============ -->
+    <section class="panel contact-panel" id="contact" data-section aria-labelledby="contact-title">
+      <span class="panel__anchor panel__anchor--focal" data-anchor="contact" aria-hidden="true"></span>
       <div class="container">
-        <header class="section-head" data-reveal>
-          <span class="section-head__num mono">05</span>
-          <h2 class="section-head__title" id="education-title"><span class="grad">Education</span></h2>
-          <span class="section-head__kicker mono">Foundations</span>
-        </header>
-
-        <ol class="edu">
-          <li class="edu__item" data-reveal>
-            <span class="edu__year">2026</span>
-            <div>
-              <h3 class="edu__degree">BS Software Engineering (BSSE)</h3>
-              <p class="edu__school">Air University, Multan Campus</p>
-              <p class="edu__note mono">Oct 2022 – Jun 2026 · Software engineering fundamentals, OOP, web application development</p>
-            </div>
-          </li>
-          <li class="edu__item" data-reveal>
-            <span class="edu__year">2022</span>
-            <div>
-              <h3 class="edu__degree">Intermediate (FSc)</h3>
-              <p class="edu__school">Fazaia Inter College, Shaheen Camp, Peshawar Cantt</p>
-            </div>
-          </li>
-          <li class="edu__item" data-reveal>
-            <span class="edu__year">2020</span>
-            <div>
-              <h3 class="edu__degree">Matriculation (SSC)</h3>
-              <p class="edu__school">F.G Fazaia Secondary School, PAF Base Shaheen Camp, Peshawar</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ 06 CERTIFICATIONS ============ -->
-    <section class="section" id="honours" aria-labelledby="honours-title">
-      <div class="container">
-        <header class="section-head" data-reveal>
-          <span class="section-head__num mono">06</span>
-          <h2 class="section-head__title" id="honours-title">Certifications &amp; <span class="grad">beyond code</span></h2>
-          <span class="section-head__kicker mono">Honours</span>
-        </header>
-
-        <ul class="certs">
-          <li class="cert glass" data-reveal-item>
-            <span class="cert__tag mono">Language</span>
-            <h3 class="cert__title">IELTS Academic</h3>
-            <p class="cert__detail">Overall Band 6.0 (CEFR B2)</p>
-          </li>
-          <li class="cert glass" data-reveal-item>
-            <span class="cert__tag mono">2018</span>
-            <h3 class="cert__title">Computer Literacy Course</h3>
-            <p class="cert__detail">Pakistan Air Force, PAF Base Rafiqui</p>
-          </li>
-          <li class="cert glass" data-reveal-item>
-            <span class="cert__tag mono">Oct 2025</span>
-            <h3 class="cert__title">Organizing Committee Member</h3>
-            <p class="cert__detail">Blood Donation Camp, Regional Blood Center Multan / Air University Multan Campus</p>
-          </li>
-          <li class="cert cert--accent" data-reveal-item>
-            <span class="cert__tag mono">Feb 2025</span>
-            <h3 class="cert__title">Certificate of Appreciation, Blood Donor</h3>
-            <p class="cert__detail">Recognized by Regional Blood Center Multan for donating blood and saving <strong>3 lives</strong>.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ 07 CONTACT ============ -->
-    <section class="section section--contact" id="contact" aria-labelledby="contact-title">
-      <div class="container">
-        <header class="section-head" data-reveal>
-          <span class="section-head__num mono">07</span>
-          <h2 class="section-head__title" id="contact-title">Let's <span class="grad">talk</span></h2>
-          <span class="section-head__kicker mono">Open to work</span>
-        </header>
-
         <div class="contact">
           <div class="contact__intro" data-reveal>
-            <p class="contact__big">
-              Got a role, a project or an idea? <span class="grad">My inbox is open.</span>
-            </p>
+            <p class="label section-head__kicker"><span class="accent">05</span> Contact</p>
+            <h2 class="section-head__title" id="contact-title" data-reveal-text>Let's build <span class="accent">something.</span></h2>
+            <p class="contact__lede">Got a role, a project or an idea? My inbox is open.</p>
             <a class="contact__email" href="mailto:itxahmer00@gmail.com" data-magnetic>
               itxahmer00@gmail.com
               <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
             </a>
-
-            <a class="btn btn--ghost contact__cv" href="assets/Muhammad_Ahmer_Shahzad_CV_Public.pdf" download="Muhammad-Ahmer-Shahzad-CV.pdf" data-magnetic>
-              Download CV
-              <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
-            </a>
-
-            <ul class="socials" aria-label="Social links">
-              <li><a class="icon-btn" href="https://github.com/Ahmer-Shahzad" target="_blank" rel="noopener noreferrer" data-magnetic aria-label="GitHub (opens in new tab)"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a></li>
-              <li><a class="icon-btn" href="https://www.linkedin.com/in/ahmershahzadprofile/" target="_blank" rel="noopener noreferrer" data-magnetic aria-label="LinkedIn (opens in new tab)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
-              <li><a class="icon-btn" href="mailto:itxahmer00@gmail.com" data-magnetic aria-label="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a></li>
-            </ul>
+            <div class="contact__actions">
+              <a class="btn btn--ghost" href="assets/Muhammad_Ahmer_Shahzad_CV_Public.pdf" download="Muhammad-Ahmer-Shahzad-CV.pdf" data-magnetic>
+                Download CV
+                <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+              </a>
+              <ul class="socials" aria-label="Social links">
+                <li><a class="icon-btn" href="https://github.com/Ahmer-Shahzad" target="_blank" rel="noopener noreferrer" data-magnetic aria-label="GitHub (opens in new tab)"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a></li>
+                <li><a class="icon-btn" href="https://www.linkedin.com/in/ahmershahzadprofile/" target="_blank" rel="noopener noreferrer" data-magnetic aria-label="LinkedIn (opens in new tab)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+                <li><a class="icon-btn" href="mailto:itxahmer00@gmail.com" data-magnetic aria-label="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a></li>
+              </ul>
+            </div>
           </div>
 
           <!-- Netlify Forms: detected automatically at deploy time -->
-          <form class="form glass" name="contact" method="POST" action="/?sent=1#contact" data-netlify="true" netlify-honeypot="bot-field" novalidate data-reveal>
+          <form class="form card" name="contact" method="POST" action="/?sent=1#contact" data-netlify="true" netlify-honeypot="bot-field" novalidate data-reveal>
             <input type="hidden" name="form-name" value="contact">
             <p class="form__hp" aria-hidden="true">
               <label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
             </p>
 
             <div class="field">
-              <label for="f-name" class="mono">Your name</label>
+              <label for="f-name" class="label">Your name</label>
               <input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" aria-describedby="f-name-error">
               <p class="field__error" id="f-name-error"></p>
             </div>
             <div class="field">
-              <label for="f-email" class="mono">Email</label>
+              <label for="f-email" class="label">Email</label>
               <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-error">
               <p class="field__error" id="f-email-error"></p>
             </div>
             <div class="field">
-              <label for="f-message" class="mono">Message</label>
-              <textarea id="f-message" name="message" rows="5" required minlength="10" aria-describedby="f-message-error"></textarea>
+              <label for="f-message" class="label">Message</label>
+              <textarea id="f-message" name="message" rows="4" required minlength="10" aria-describedby="f-message-error"></textarea>
               <p class="field__error" id="f-message-error"></p>
             </div>
 
@@ -656,13 +632,10 @@
 
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
-    <div class="container">
-      <p class="footer__name" aria-hidden="true">ahmer<span class="grad">.</span></p>
-      <div class="footer__row">
-        <p class="mono">© <span data-year>2026</span> Muhammad Ahmer Shahzad</p>
-        <p class="mono footer__interests">Off the clock: Reading · Gaming (PUBG) · Coding · Cricket · Badminton</p>
-        <a class="mono footer__top" href="#top">Back to top ↑</a>
-      </div>
+    <div class="container footer__row">
+      <p>© <span data-year>2026</span> Muhammad Ahmer Shahzad</p>
+      <p class="footer__interests">Off the clock: Reading · Gaming (PUBG) · Coding · Cricket · Badminton</p>
+      <a class="footer__top" href="#home">Back to top ↑</a>
     </div>
   </footer>
 
@@ -670,7 +643,7 @@
   <dialog class="lightbox" id="cert-dialog" aria-labelledby="cert-dialog-title">
     <div class="lightbox__inner">
       <header class="lightbox__head">
-        <h2 class="lightbox__title mono" id="cert-dialog-title">Flyboys Warehouse: certificate</h2>
+        <h2 class="lightbox__title label" id="cert-dialog-title">Flyboys Warehouse: certificate</h2>
         <button class="icon-btn" type="button" data-dialog-close aria-label="Close certificate">
           <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
         </button>
@@ -678,7 +651,7 @@
       <!-- TODO: add the real file at /assets/flyboys-certificate.jpg (it loads only when the lightbox opens) -->
       <figure class="lightbox__figure">
         <img data-src="assets/flyboys-certificate.jpg" alt="Certificate for the Flyboys Warehouse final year project" decoding="async">
-        <figcaption class="lightbox__fallback mono" hidden>Certificate image coming soon.</figcaption>
+        <figcaption class="lightbox__fallback label" hidden>Certificate image coming soon.</figcaption>
       </figure>
     </div>
   </dialog>
