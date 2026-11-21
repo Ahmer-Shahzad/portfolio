@@ -3,6 +3,13 @@
   publish = "."
   command = ""
 
+# tools/ holds local helper scripts (screenshot capture); never serve them
+[[redirects]]
+  from = "/tools/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 # Security headers for every page
 [[headers]]
   for = "/*"
